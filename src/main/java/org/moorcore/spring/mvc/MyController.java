@@ -2,6 +2,7 @@ package org.moorcore.spring.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,27 +18,24 @@ public class MyController {
     }
 
     @RequestMapping("/askDetails")
-    public String askEmployeeDetails() {
+    public String askEmployeeDetails(Model model) {
+        model.addAttribute("employee", new Employee());
+
         return "ask-emp-details-view";
     }
 
     @RequestMapping("/showDetails")
-    public String showEmpDetails(@RequestParam("employeeName") String empName,
-                                 Model model) {
-        empName = "Itachi " + empName;
-        model.addAttribute("nameAttribute", empName);
-        model.addAttribute("description", " - my Senpai~");
+    public String showEmpDetails(@ModelAttribute("employee") Employee employee) {
+
+        String name = employee.getName();
+        employee.setName(name + " Senpai~");
+
+        String surName = employee.getSurName();
+        employee.setSurName(surName + " San");
+
+        int salary = employee.getSalary();
+        employee.setSalary(salary * 100);
 
         return "show-emp-details-view";
     }
-
-//    @RequestMapping("/showDetails")
-//    public String showEmpDetails(HttpServletRequest request, Model model) {
-//        String empName = request.getParameter("employeeName");
-//        empName = "Itachi " + empName;
-//        model.addAttribute("nameAttribute", empName);
-//        model.addAttribute("description", " - my Senpai~");
-//
-//        return "show-emp-details-view";
-//    }
 }

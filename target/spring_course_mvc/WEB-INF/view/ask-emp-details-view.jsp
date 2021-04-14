@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 
@@ -7,17 +8,33 @@
     Enter your name:
 </h2>
 
-<br>
-<br>
-<br>
+<br><br><br>
 
-<form action="showDetails" method="get">
-    <input type="text" name="employeeName"
-    placeholder="Enter your name"/>
+<form:form action="showDetails" modelAttribute="employee">
+    Name <form:input path="name"/>
+    <br><br>
 
-    <input type="submit"/>
-</form>
+    Surname <form:input path="surName"/>
+    <br><br>
 
+    Salary <form:input path="salary"/>
+    <br><br>
+
+    Department <form:select path="department">
+        <form:options items="${employee.departments}"/>
+    </form:select>
+    <br><br>
+
+    Which car do you want?
+    <form:radiobuttons path="carBrand" items="${employee.carBrands}"/>
+    <br><br>
+
+    Foreign language(s)
+    <form:checkboxes path="languages" items="${employee.languagesMap}"/>
+    <br><br>
+
+    <input type="submit" value="OK">
+</form:form>
 
 </body>
 
