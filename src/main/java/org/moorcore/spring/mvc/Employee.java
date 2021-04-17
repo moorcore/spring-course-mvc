@@ -1,18 +1,28 @@
 package org.moorcore.spring.mvc;
 
+import javax.validation.constraints.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Employee {
+    @Size(min = 2, max = 33, message = "* Name must be between 2 and 33 symbols")
+    @NotBlank(message = "* Name is a required field")
     private String name;
 
+    @Size(min = 2, max = 33, message = "* Surname must be between 2 and 33 symbols")
+    @NotBlank(message = "* Surname is a required field")
     private String surName;
-
+    
+    @Min(value = 700, message = "* Must be greater than 699")
+    @Max(value = 3500, message = "* Must be less than 3501")
     private int salary;
 
     private String department;
 
     private String carBrand;
+
+    @Pattern(regexp = "\\d{3}-\\{2}-\\d{2}", message = "* Please use pattern XXX-XX-XX")
+    private String phoneNumber;
 
     private Map<String, String> departments;
 
@@ -35,7 +45,7 @@ public class Employee {
 
         languagesMap = new HashMap<>();
         languagesMap.put("English", "EN");
-        languagesMap.put("Deutch", "DE");
+        languagesMap.put("Deutsch", "DE");
         languagesMap.put("French", "FR");
     }
 
@@ -109,6 +119,14 @@ public class Employee {
 
     public void setLanguagesMap(Map<String, String> languagesMap) {
         this.languagesMap = languagesMap;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override

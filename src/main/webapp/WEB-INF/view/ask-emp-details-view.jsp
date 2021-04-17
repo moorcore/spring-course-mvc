@@ -11,16 +11,25 @@
 <br><br><br>
 
 <form:form action="showDetails" modelAttribute="employee">
+
     Name <form:input path="name"/>
+    <form:errors path="name"/>
     <br><br>
 
     Surname <form:input path="surName"/>
+    <form:errors path="surName"/>
+    <br><br>
+
+    Phone Number <form:input path="phoneNumber"/>
+    <form:errors path="phoneNumber"/>
     <br><br>
 
     Salary <form:input path="salary"/>
+    <form:errors path="salary"/>
     <br><br>
 
     Department <form:select path="department">
+    <form:errors path="department"/>
         <form:options items="${employee.departments}"/>
     </form:select>
     <br><br>
