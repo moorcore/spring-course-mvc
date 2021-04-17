@@ -1,5 +1,7 @@
 package org.moorcore.spring.mvc;
 
+import org.moorcore.spring.mvc.validation.CheckEmail;
+
 import javax.validation.constraints.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,8 +23,12 @@ public class Employee {
 
     private String carBrand;
 
-    @Pattern(regexp = "\\d{3}-\\{2}-\\d{2}", message = "* Please use pattern XXX-XX-XX")
+    @Pattern(regexp = "\\d{3}-\\d{2}-\\d{2}", message = "* Please use pattern XXX-XX-XX")
     private String phoneNumber;
+
+    @Email
+    @CheckEmail
+    private String email;
 
     private Map<String, String> departments;
 
@@ -127,6 +133,14 @@ public class Employee {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

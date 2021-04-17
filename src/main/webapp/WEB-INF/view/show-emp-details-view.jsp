@@ -16,6 +16,8 @@ Surname: ${employee.surName}
 <br><br>
 Phone: ${employee.phoneNumber}
 <br><br>
+Email: ${employee.email}
+<br><br>
 Salary: ${employee.salary}
 <br><br>
 Department: ${employee.department}
